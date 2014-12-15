@@ -22,7 +22,7 @@ public class Shop {
     public List<Phone> search(PhoneSearchQuery query) {
         List<Phone> result = new ArrayList<Phone>();
         for (Phone phone : result) {
-            if (phone.check(query)) {
+            if (query.check(phone)) {
                 result.add(phone);
             }
         }

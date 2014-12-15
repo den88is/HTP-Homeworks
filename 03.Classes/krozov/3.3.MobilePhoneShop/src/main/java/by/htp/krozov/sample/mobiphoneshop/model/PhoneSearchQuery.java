@@ -72,4 +72,14 @@ public class PhoneSearchQuery {
     public static boolean checkCriteria(Object queryProp, Object phoneProp) {
         return queryProp == null || queryProp.equals(phoneProp);
     }
+
+    public boolean check(Phone phone) {
+        return checkCriteria(vendor, phone.getVendor())
+                && checkCriteria(ip, phone.getIp())
+                && checkCriteria(os, phone.getOs())
+                && checkCriteria(price, phone.getPrice())
+                && checkCriteria(screenSize, phone.getPrice())
+                && checkCriteria(worktime, phone.getWorktime())
+                && checkCriteria(smartphone, phone.isSmartphone());
+    }
 }

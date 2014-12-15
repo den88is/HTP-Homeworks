@@ -64,14 +64,4 @@ public class Phone {
     public IP getIp() {
         return ip;
     }
-
-    public boolean check(PhoneSearchQuery query) {
-        return PhoneSearchQuery.checkCriteria(query.getVendor(), vendor)
-                && PhoneSearchQuery.checkCriteria(query.getIp(), ip)
-                && PhoneSearchQuery.checkCriteria(query.getOs(), os)
-                && PhoneSearchQuery.checkCriteria(query.getPrice(), price)
-                && PhoneSearchQuery.checkCriteria(query.getScreenSize(), screenSize)
-                && PhoneSearchQuery.checkCriteria(query.getWorktime(), worktime)
-                && PhoneSearchQuery.checkCriteria(query.isSmartphone(), smartphone);
-    }
 }
