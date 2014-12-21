@@ -1,14 +1,14 @@
-package staff;
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Programmer {
+public class Programmer extends Wages {
     private final String name;
     private final String surname;
     private final Date dateOfBirth;
     private final Date startingDate;
-    private int wages;
+    private int wages = programmerWages();
     private final String technology;
+    static SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 
     public Programmer(String name, String surname, Date dateOfBirth, Date startingDate, String technology) {
         this.name = name;
@@ -20,11 +20,13 @@ public class Programmer {
 
     @Override
     public String toString() {
-        return "SalesManager{" +
+        return "Programmer{" +
                 "name=" + name +
-                ", surname='" + surname + '\'' +
-                ", dateOfBirth'" + dateOfBirth + '\'' +
-                ", startingDate=" + startingDate +
+                ", surname=" + surname +
+                ", dateOfBirth= " + df.format(dateOfBirth) +
+                ", startingDate= " + df.format(startingDate) +
+                ", technology= " + technology +
+                ", wages= " + wages +
                 '}';
     }
 }
