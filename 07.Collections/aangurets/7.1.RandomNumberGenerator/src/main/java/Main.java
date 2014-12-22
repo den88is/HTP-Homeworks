@@ -1,24 +1,21 @@
 import java.util.*;
 
-public abstract class Main {
+public class Main {
     public static void main(String[] args) {
         Random random = new Random();
-        int[] numbers = new int[new Random().nextInt(150) + 50];
+        Integer[] numbersArray = new Integer[new Random().nextInt(150) + 50];
 
-        for (int count = 0; count < numbers.length; count++) {
-            numbers[count] = random.nextInt(1000);
+        for (int g = 0; g < numbersArray.length; g++) {
+            numbersArray[g] = random.nextInt(1000);
         }
 
-        Set<Integer> collectionOfValues = new HashSet<Integer>();
+        Set<Integer> numbersSet = new HashSet<Integer>();
 
-        for (int c = 0; c < numbers.length; c++) {
-            collectionOfValues.add(numbers[c]);
-        }
-        Set<Integer> mySet = new TreeSet<Integer>();
-        mySet.addAll(collectionOfValues);
+        Collections.addAll(numbersSet, numbersArray);
 
-        for (int item : mySet) {
-            System.out.println(item);
-        }
+        TreeSet<Integer> mySet = new TreeSet<Integer>();
+        mySet.addAll(numbersSet);
+
+        System.out.println(mySet);
     }
-}
+  }
