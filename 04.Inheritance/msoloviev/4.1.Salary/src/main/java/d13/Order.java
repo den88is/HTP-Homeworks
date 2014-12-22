@@ -10,6 +10,7 @@ public class Order {
     private static int nextNumberOrder = 1;
     final int numberOrder;
     protected Date dayStartOrder;
+
     Order(double castOrder) {
         this.castOrder = castOrder;
         numberOrder = nextNumberOrder++;

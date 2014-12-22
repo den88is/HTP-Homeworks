@@ -26,24 +26,20 @@ public abstract class Employee {
 
     /* create date variable from beginTime to now */
     public static Date generateDate(Date beginTime) {
-
-
         long now = new Date().getTime();
         long startTime = beginTime.getTime();
-        long randomTime = startTime + (long) ((now-startTime ) * Math.random());
+        long randomTime = startTime + (long) ((now - startTime) * Math.random());
         return new Date(randomTime);
     }
-
 
     /*
     * */
     Employee() {
-
         name = generateString(characters, new Random().nextInt(20) + 1);
         soname = generateString(characters, new Random().nextInt(20) + 2);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        String s="03.10.1998";
-        Date beginDate=simpleDateFormat.parse(s, new ParsePosition(0));
+        String s = "03.10.1998";
+        Date beginDate = simpleDateFormat.parse(s, new ParsePosition(0));
         this.dayStartWork = generateDate(beginDate);
     }
 
@@ -81,7 +77,7 @@ public abstract class Employee {
                 "name='" + name + '\'' +
                 ", soname='" + soname + '\'' +
                 ", dayBirthday=" + dayBirthday +
-                ", dayStartWork=" + dayStartWork  +
+                ", dayStartWork=" + dayStartWork +
                 '}';
     }
 }

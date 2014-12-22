@@ -22,6 +22,47 @@ public class Company {
     protected ArrayList<TeamLead> teamLeads = new ArrayList<TeamLead>();
     protected ArrayList<SalesManager> salesManagers = new ArrayList<SalesManager>();
     protected ArrayList<Director> directors = new ArrayList<Director>();
+    int developerRateMin = 400;
+    int developerRateMax = 5400;
+    int teamLeadSurchargeMax = 2000;
+    int directorRateMin = 5000;
+    int directorRateMax = 10000;
+    int managerRateMin = 400;
+    int managerRateMax = 1400;
+
+    /*create a new company with random employs and their rates*/
+    Company(int directorCount, int developerCount, int managerCount, int teamLeadCount) {
+        this.developerCount = developerCount;
+        this.directorCount = directorCount;
+        this.managerCount = managerCount;
+        this.teamLeadCount = teamLeadCount;
+        setManagersPercent(3);
+        setRateDeveloper(new Random().nextInt(developerRateMax - developerRateMin) + developerRateMin);
+        setRateTeamLider(rateDeveloper + new Random().nextInt(teamLeadSurchargeMax));
+        setRateDirector(new Random().nextInt(directorRateMax - directorRateMin) + directorRateMin);
+        setRateManagers(new Random().nextInt(managerRateMax) + managerRateMin);
+        for (int i = 0; i < developerCount; i++) {
+            addDeveloper(new Developer());
+        }
+        for (int i = 0; i < directorCount; i++) {
+            addDirector(new Director());
+        }
+        for (int i = 0; i < teamLeadCount; i++) {
+            addTeamLead(new TeamLead());
+        }
+        for (int i = 0; i < managerCount; i++) {
+            addSalesManager(new SalesManager());
+        }
+
+        int team = 0;
+        for (Developer developer : developers) {
+            teamLeads.get(team).addDeveloper(developer);
+            ++team;
+            if (team == teamLeadCount) {
+                team = 0;
+            }
+        }
+    }
 
     public double salaryCalcTeam(String dateBegin, String dateEnd, int numberTeam) {
         double salary = 0;
@@ -44,9 +85,8 @@ public class Company {
         Date endDate = simpleDateFormat.parse(dateEnd, new ParsePosition(0));
         double kofTime = (endDate.getTime() - beginDate.getTime()) / millSecInMonth;
         for (Order order : salesManagers.get(numberManager).orders) {
-            if (order.getDayStartOrder().after(beginDate)&&order.getDayStartOrder().before(endDate)) {
+            if (order.getDayStartOrder().after(beginDate) && order.getDayStartOrder().before(endDate)) {
                 salary += order.castOrder * managersPercent / 100;
-
             }
         }
         return salary + kofTime * rateManagers;
@@ -66,42 +106,6 @@ public class Company {
         double salaryDirector = rateDirector * (endDate.getTime() - beginDate.getTime()) / millSecInMonth;
         return (salary + salaryDirector);
     }
-
-    /*create a new company with random employs and their rates*/
-    Company(int directorCount, int developerCount, int managerCount, int teamLeadCount) {
-        this.developerCount = developerCount;
-        this.directorCount = directorCount;
-        this.managerCount = managerCount;
-        this.teamLeadCount = teamLeadCount;
-        setManagersPercent(3);
-        setRateDeveloper(new Random().nextInt(5000) + 400);
-        setRateTeamLider(rateDeveloper + new Random().nextInt(2000));
-        setRateDirector(new Random().nextInt(5000) + 5000);
-        setRateManagers(new Random().nextInt(1000) + 400);
-        for (int i = 0; i < developerCount; i++) {
-            addDeveloper(new Developer());
-        }
-        for (int i = 0; i < directorCount; i++) {
-            addDirector(new Director());
-        }
-        for (int i = 0; i < teamLeadCount; i++) {
-            addTeamLead(new TeamLead());
-        }
-        for (int i = 0; i < managerCount; i++) {
-            addSalesManager(new SalesManager());
-        }
-
-        int team = 0;
-        for (Developer developer : developers) {
-            teamLeads.get(team).addDeveloper(developer);
-            ++team;
-            if (team == teamLeadCount) {
-                team = 0;
-            }
-
-        }
-    }
-
 
     public void addDeveloper(Developer developer) {
         this.developers.add(developer);
