@@ -1,4 +1,4 @@
-package by.htp.krozov.homework.matrix;
+package by.htp.krozov.homework.generic.matrix;
 
 import org.jetbrains.annotations.NotNull;
 

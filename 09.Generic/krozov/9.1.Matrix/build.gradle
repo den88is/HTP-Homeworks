@@ -2,8 +2,6 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
 
-mainClassName = 'by.htp.krozov.homework.matrix.Main'
-
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
 }
