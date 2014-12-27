@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+mainClassName = 'by.htp.krozov.homework.matrix.Main'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    compile 'org.jetbrains:annotations:13.0'
+}
